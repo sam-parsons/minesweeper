@@ -1,0 +1,7 @@
+AAAAAAA    SSSSSS   DDDDDD    FFFFFFF   
+A     A   S         D     D   F         
+A     A   S         D     D   F         
+AAAAAAA    SSSSS    D     D   FFFF      
+A     A         S   D     D   F         
+A     A         S   D     D   F         
+A     A   SSSSSS    DDDDDD    F         
