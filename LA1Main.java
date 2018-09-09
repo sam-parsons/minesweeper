@@ -14,7 +14,8 @@ import java.io.IOException;
  * Useful future additions: 
  * - You Win/Lose banner at end of game with genText1
  * - research scanner's handling of return key with empty string
- * - control the size of the space around the game board
+ * - make diffculty scale with field size
+ * - give visible error messages for marking an unrevealed space
  */
 
 public class LA1Main {
@@ -139,20 +140,20 @@ public class LA1Main {
                 } else if (addMineYN.equals("Y") || addMineYN.equals("y")) {
                     
                     do {
-                        System.out.print("\t\tEnter row of mine to be added between 0 and " + (fieldDim-1) + " (integer): "); 
+                        System.out.print("\t\tEnter row of mine to be added between 1 and " + (fieldDim) + " (integer): "); 
                         addMineXStr = scan.next();
                         try {
-                            addMineX = Integer.parseInt(addMineXStr);
+                            addMineX = Integer.parseInt(addMineXStr) - 1;
                         } catch (NumberFormatException e) {
         
                         }
                     } while (addMineX < 1 || addMineX > fieldDim-1);
                    
                     do {
-                        System.out.print("\t\t\t\tEnter column of mine to be added between 0 and " + (fieldDim-1) + " (integer): "); 
+                        System.out.print("\t\t\t\tEnter column of mine to be added between 1 and " + (fieldDim) + " (integer): "); 
                         addMineYStr = scan.next();
                         try {
-                            addMineY = Integer.parseInt(addMineYStr);
+                            addMineY = Integer.parseInt(addMineYStr) - 1;
                         } catch (NumberFormatException e) {
         
                         }
@@ -167,9 +168,9 @@ public class LA1Main {
 
             for (int i = 0; i < 50; i++) System.out.println();
 
-            System.out.println("\t\t==================================");
-            System.out.println("\t\tMinefield assembled, ready to play");
-            System.out.println("\t\t==================================");
+            // System.out.println("\t\t==================================");
+            // System.out.println("\t\tMinefield assembled, ready to play");
+            // System.out.println("\t\t==================================");
 
             String revealXStr = "";
             String revealYStr = "";
@@ -177,15 +178,14 @@ public class LA1Main {
                 for (int i = 0; i < 50; i++) System.out.println();
                 mf.printRevealArr();
                 System.out.println();
-                System.out.println();
                     
                 if (mf.isNotComplete()) {
                     do {
                         revealX = -1;
-                        System.out.print("\t\tEnter row of space to be revealed between 0 and " + (fieldDim-1) + " (integer): ");
+                        System.out.print("\t\tEnter row of space to be revealed between 1 and " + (fieldDim) + " (integer): ");
                         revealXStr = scan.next();
                         try {
-                            revealX = Integer.parseInt(revealXStr);
+                            revealX = Integer.parseInt(revealXStr) - 1;
                         } catch (NumberFormatException e) {
         
                         }
@@ -193,10 +193,10 @@ public class LA1Main {
 
                     do {
                         revealY = -1;
-                        System.out.print("\t\tEnter column of space to be revealed between 0 and " + (fieldDim-1) + " (integer): ");
+                        System.out.print("\t\tEnter column of space to be revealed between 1 and " + (fieldDim) + " (integer): ");
                         revealYStr = scan.next();
                         try {
-                            revealY = Integer.parseInt(revealYStr);
+                            revealY = Integer.parseInt(revealYStr) - 1;
                         } catch (NumberFormatException e) {
         
                         }
@@ -234,7 +234,7 @@ public class LA1Main {
                         } catch (NumberFormatException e) {
         
                         }
-                    } while ((!markYN.equals("y") && !markYN.equals("Y") && !markYN.equals("n") && !markYN.equals("N")) || markYN.equals(""));
+                    } while ((!markYN.equals("y") && !markYN.equals("Y") && !markYN.equals("n") && !markYN.equals("N")) || markYN.equals("") || markYN.equals(" "));
 
                     if (markYN.equals("Y") || markYN.equals("y")) {
                         markMine = true;
@@ -253,20 +253,20 @@ public class LA1Main {
                         String markColStr = "";
 
                         do {
-                            System.out.print("\t\t  Enter the row to be (un)marked (integer between 0 and " + (fieldDim-1) + "): ");
+                            System.out.print("\t\t  Enter the row to be (un)marked (integer between 1 and " + (fieldDim) + "): ");
                             markRowStr = scan.next();
                             try {
-                                markRow = Integer.parseInt(markRowStr);
+                                markRow = Integer.parseInt(markRowStr) - 1;
                             } catch (NumberFormatException e) {
             
                             }
                         } while (markRow < 0 || markRow > fieldDim-1);
 
                         do {
-                            System.out.print("\t\tEnter the column to be (un)marked (integer between 0 and " + (fieldDim-1) + "): ");
+                            System.out.print("\t\tEnter the column to be (un)marked (integer between 1 and " + (fieldDim) + "): ");
                             markColStr = scan.next();
                             try {
-                                markCol = Integer.parseInt(markColStr);
+                                markCol = Integer.parseInt(markColStr) - 1;
                             } catch (NumberFormatException e) {
             
                             }
@@ -281,8 +281,6 @@ public class LA1Main {
                             System.out.println("\t\t===================================================");
                         }
                         
-                        
-
                         if (!mf.isNotComplete()) {
                             for (int i = 0; i < 50; i++) System.out.println();
                             System.out.println("\t\t\t===================================================");
@@ -307,7 +305,7 @@ public class LA1Main {
                                 } catch (NumberFormatException e) {
                 
                                 }
-                            } while ((!markAgainYN.equals("y") && !markAgainYN.equals("Y") && !markAgainYN.equals("n") && !markAgainYN.equals("N")) || markAgainYN.equals(""));
+                            } while ((!markAgainYN.equals("y") && !markAgainYN.equals("Y") && !markAgainYN.equals("n") && !markAgainYN.equals("N")) || markAgainYN.equals("") || markAgainYN.equals(" "));
         
                             if (markAgainYN.equals("N") || markAgainYN.equals("n")) {
                                 markMine = false;

@@ -281,26 +281,51 @@ public class Minefield {
      * This method prints a translation of the board to the console
      */
     public void printField() {
+        int len = mineCounts[0].length;
         System.out.println();
-        System.out.print("\t\t\t\t        ");
-        for (int i = 0; i < mineCounts[0].length; i++) {
+
+        if (len > 15) {
+            System.out.printf("\t\t              ");
+        } else if (len < 16 && len > 10) {
+            System.out.printf("\t\t\t           ");
+        } else {
+            System.out.printf("\t\t\t\t          ");
+        }
+        
+        for (int i = 1; i <= mineCounts[0].length; i++) {
             System.out.printf("%d ", i % 10);
         }
-        for (int i = 0; i < mineCounts[0].length; i++) {
+        for (int i = 1; i <= mineCounts[0].length; i++) {
             System.out.println();
             if (i < 10) {
-                System.out.printf("\t\t\t\t      %d ", i);
+
+                if (len > 15) {
+                    System.out.printf("\t\t            %d ", i);
+                } else if (len < 16 && len > 10) {
+                    System.out.printf("\t\t\t         %d ", i);
+                } else {
+                    System.out.printf("\t\t\t\t        %d ", i);
+                }
+                
             } else {
-                System.out.printf("\t\t\t\t     %d ", i);
+
+                if (len > 15) {
+                    System.out.printf("\t\t            %d ", i);
+                } else if (len < 16 && len > 10) {
+                    System.out.printf("\t\t\t        %d ", i);
+                } else {
+                    System.out.printf("\t\t\t\t        %d ", i);
+                }
+
             }
             
             for (int j = 0; j < mineCounts[0].length; j++) {
-                if (mineCounts[i][j] == -1) {
+                if (mineCounts[i-1][j] == -1) {
                     System.out.print("@ ");
-                } else if (mineCounts[i][j] == 0) {
+                } else if (mineCounts[i-1][j] == 0) {
                     System.out.print(". ");
                 } else {
-                    System.out.print(mineCounts[i][j] + " ");
+                    System.out.print(mineCounts[i-1][j] + " ");
                 }
             }
         }
@@ -475,40 +500,73 @@ public class Minefield {
         int len = mineCounts[0].length;
         
         System.out.println();
-        System.out.print("\t\t\t\t          ");
-        for (int i = 0; i < mineCounts[0].length; i++) {
+
+        if (len > 15) {
+            System.out.print("\t\t             ");
+        } else if (len < 16 && len > 10) {
+            System.out.print("\t\t\t           ");
+        } else {
+            System.out.print("\t\t\t\t         ");
+        } 
+        
+        for (int i = 1; i <= mineCounts[0].length; i++) {
             System.out.printf("%d ", i % 10);
         }
-        for (int i = 0; i < mineCounts[0].length; i++) {
+        for (int i = 1; i <= mineCounts[0].length; i++) {
             System.out.println();
             if (i < 10) {
-                System.out.printf("\t\t\t\t        %d ", i);
+
+                if (len > 15) {
+                    System.out.printf("\t\t           %d ", i);
+                } else if (len < 16 && len > 10) {
+                    System.out.printf("\t\t\t         %d ", i);
+                } else {
+                    System.out.printf("\t\t\t\t       %d ", i);
+                }
+
             } else {
-                System.out.printf("\t\t\t\t       %d ", i);
+
+                if (len > 15) {
+                    System.out.printf("\t\t          %d ", i);
+                } else if (len < 16 && len > 10) {
+                    System.out.printf("\t\t\t        %d ", i);
+                } else {
+                    System.out.printf("\t\t\t\t       %d ", i);
+                }
+
             }
             for (int j = 0; j < mineCounts[0].length; j++) {
-                if (revealArr[i][j] == 1) {
-                    if (mineCounts[i][j] == -1) {
+                if (revealArr[i-1][j] == 1) {
+                    if (mineCounts[i-1][j] == -1) {
                         System.out.print("@ ");
-                    } else if (mineCounts[i][j] == 0) {
+                    } else if (mineCounts[i-1][j] == 0) {
                         System.out.print(". ");
                     } else {
-                        System.out.print(mineCounts[i][j] + " ");
+                        System.out.print(mineCounts[i-1][j] + " ");
                     }
-                } else if (revealArr[i][j] == 0) {
+                } else if (revealArr[i-1][j] == 0) {
                     System.out.print("[]");
-                } else if (revealArr[i][j] == -1) {
+                } else if (revealArr[i-1][j] == -1) {
                     System.out.print("m ");
                 }
             }
         }
         // possible conditional linked to dimensions to control space
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
+        
+
+        if (len < 10) {
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println();
+        } else {
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println();
+        }
     }
 
     public boolean isMine(int row, int column) {
