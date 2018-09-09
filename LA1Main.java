@@ -15,6 +15,8 @@ import java.io.IOException;
  * - You Win/Lose banner at end of game with genText1
  * - research scanner's handling of return key with empty string
  * - make diffculty scale with field size
+ * - stagger the top row numbers on printRevealArr and printField
+ * - escape character in marking sequence
  */
 
 public class LA1Main {
@@ -374,6 +376,7 @@ public class LA1Main {
 
             for (int i = 0; i < 50; i++) System.out.println();
             mf.printField();
+
             do {
                 System.out.print("\t\t\t            Play again? (Y/n): ");
                 endGame = scan.next();

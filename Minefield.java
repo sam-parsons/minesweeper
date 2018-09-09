@@ -329,9 +329,19 @@ public class Minefield {
                 }
             }
         }
-        System.out.println();
-        System.out.println();
-        System.out.println();
+
+        if (len < 10) {
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println();
+        } else {
+            System.out.println();
+            System.out.println();
+            System.out.println();
+        }
+
         System.out.println("\t\t\t            ====================");
     }
 
@@ -531,7 +541,7 @@ public class Minefield {
                 } else if (len < 16 && len > 10) {
                     System.out.printf("\t\t\t        %d ", i);
                 } else {
-                    System.out.printf("\t\t\t\t       %d ", i);
+                    System.out.printf("\t\t\t\t      %d ", i);
                 }
 
             }
