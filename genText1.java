@@ -30,7 +30,7 @@ public class genText1 {
         // }
 
         // Get message from user
-        System.out.print("Please enter your first name: ");
+        System.out.print("\t\t\t  Please enter your first name: ");
         message = scan.nextLine();
 
         messageArr = message.split("");

@@ -282,16 +282,16 @@ public class Minefield {
      */
     public void printField() {
         System.out.println();
-        System.out.print("   ");
+        System.out.print("\t\t\t\t        ");
         for (int i = 0; i < mineCounts[0].length; i++) {
             System.out.printf("%d ", i % 10);
         }
         for (int i = 0; i < mineCounts[0].length; i++) {
             System.out.println();
             if (i < 10) {
-                System.out.printf(" %d ", i);
+                System.out.printf("\t\t\t\t      %d ", i);
             } else {
-                System.out.printf("%d ", i);
+                System.out.printf("\t\t\t\t     %d ", i);
             }
             
             for (int j = 0; j < mineCounts[0].length; j++) {
@@ -307,7 +307,7 @@ public class Minefield {
         System.out.println();
         System.out.println();
         System.out.println();
-        System.out.println("====================");
+        System.out.println("\t\t\t            ====================");
     }
 
     public void reveal(int row, int column) {
@@ -475,16 +475,16 @@ public class Minefield {
         int len = mineCounts[0].length;
         
         System.out.println();
-        System.out.print("   ");
+        System.out.print("\t\t\t\t          ");
         for (int i = 0; i < mineCounts[0].length; i++) {
             System.out.printf("%d ", i % 10);
         }
         for (int i = 0; i < mineCounts[0].length; i++) {
             System.out.println();
             if (i < 10) {
-                System.out.printf(" %d ", i);
+                System.out.printf("\t\t\t\t        %d ", i);
             } else {
-                System.out.printf("%d ", i);
+                System.out.printf("\t\t\t\t       %d ", i);
             }
             for (int j = 0; j < mineCounts[0].length; j++) {
                 if (revealArr[i][j] == 1) {
@@ -502,6 +502,12 @@ public class Minefield {
                 }
             }
         }
+        // possible conditional linked to dimensions to control space
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
         System.out.println();
     }
 
@@ -511,6 +517,14 @@ public class Minefield {
             isMine = true;
         }
         return isMine;
+    }
+
+    public boolean isNumber(int row, int column) {
+        boolean isNumber = false;
+        if (mineCounts[row][column] > 0) {
+            isNumber = true;
+        }
+        return isNumber;
     }
 
     public boolean isNotComplete() {
