@@ -579,10 +579,20 @@ public class Minefield {
 
     public boolean isNumber(int row, int column) {
         boolean isNumber = false;
-        if (mineCounts[row][column] > 0) {
+        if (mineCounts[row][column] >= 0) {
             isNumber = true;
         }
         return isNumber;
+    }
+
+    public boolean isHidden(int row, int column) {
+        boolean isHidden;
+        if (revealArr[row][column] == 0) {
+            isHidden = true;
+        } else {
+            isHidden = false;
+        }
+        return isHidden;
     }
 
     public boolean isNotComplete() {

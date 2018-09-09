@@ -15,7 +15,6 @@ import java.io.IOException;
  * - You Win/Lose banner at end of game with genText1
  * - research scanner's handling of return key with empty string
  * - make diffculty scale with field size
- * - give visible error messages for marking an unrevealed space
  */
 
 public class LA1Main {
@@ -109,14 +108,14 @@ public class LA1Main {
 
             System.out.println("\t\t       =====================================");
             do {
-                System.out.print("\t\t       Pick a degree of diffculty (1-15): ");
+                System.out.print("\t\t       Pick a degree of diffculty (1-10): ");
                 fieldDiffStr = scan.next();
                 try {
                     fieldDiff = Integer.parseInt(fieldDiffStr);
                 } catch (NumberFormatException e) {
 
                 }
-            } while (fieldDiff < 1 || fieldDiff > 15);
+            } while (fieldDiff < 1 || fieldDiff > 10);
 
             mf.generate(fieldDim, fieldDiff);
             while (mf.isEmpty()) {
@@ -210,12 +209,14 @@ public class LA1Main {
                 System.out.println();
                 if (mf.isMine(revealX, revealY)) {
                     for (int i = 0; i < 50; i++) System.out.println();
+                    gt.generateEnd(false);
                     System.out.println("\t\t\t\t============================");
                     System.out.println("\t\t\t\tYou picked a mine, you lose!");
                     System.out.println("\t\t\t\t============================");
                     revealMine = false;
                 } else if (!mf.isNotComplete()) {
                     for (int i = 0; i < 50; i++) System.out.println();
+                    gt.generateEnd(true);
                     System.out.println("\t\t\t===================================================");
                     System.out.println("\t\t\tAll open spaces revealed and mines marked, you win!");
                     System.out.println("\t\t\t===================================================");
@@ -283,6 +284,7 @@ public class LA1Main {
                         
                         if (!mf.isNotComplete()) {
                             for (int i = 0; i < 50; i++) System.out.println();
+                            gt.generateEnd(true);
                             System.out.println("\t\t\t===================================================");
                             System.out.println("\t\t\tAll open spaces revealed and mines marked, you win!");
                             System.out.println("\t\t\t===================================================");
@@ -290,11 +292,16 @@ public class LA1Main {
                             markMine = false;
                         } 
 
+                        boolean validMove = true;
+                        if (mf.isNumber(markRow, markCol) && !mf.isHidden(markRow, markCol)) {
+                            validMove = false;
+                        }
+
                         for (int i = 0; i < 50; i++) System.out.println();
                         mf.printRevealArr();
                         System.out.println();
 
-                        if (markMine) {
+                        if (markMine && validMove) {
 
                             String markAgainYN = "";
                             do {
@@ -311,11 +318,31 @@ public class LA1Main {
                                 markMine = false;
                             }
 
-                        }
+                        } else if (markMine && !validMove) {
+
+                            String markAgainYN = "";
+                            System.out.println("\t\t      You may not mark a revealed open space as a mine.");
+                            System.out.println("\t\t      =================================================");
+                            do {
+                                System.out.println();
+                                try {
+                                    System.out.print("\t\t\tWould you like to mark another mine? (Y/n): ");                        
+                                    markAgainYN = scan.next();
+                                } catch (NumberFormatException e) {
+                
+                                }
+                            } while ((!markAgainYN.equals("y") && !markAgainYN.equals("Y") && !markAgainYN.equals("n") && !markAgainYN.equals("N")) || markAgainYN.equals("") || markAgainYN.equals(" "));
+        
+                            if (markAgainYN.equals("N") || markAgainYN.equals("n")) {
+                                markMine = false;
+                            }
+
+                        } 
                     }
 
                     if (!mf.isNotComplete()) {
                         for (int i = 0; i < 50; i++) System.out.println();
+                        gt.generateEnd(true);
                         System.out.println("\t\t\t===================================================");
                         System.out.println("\t\t\tAll open spaces revealed and mines marked, you win!");
                         System.out.println("\t\t\t===================================================");
@@ -324,6 +351,28 @@ public class LA1Main {
                 }    
             }
 
+            try {
+                BufferedReader br = new BufferedReader(new FileReader("bannerEnd.txt"));
+                String line = null;
+                System.out.println();
+                while ((line = br.readLine()) != null) {
+                    System.out.print("\t\t\t");
+                    System.out.println(line);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println("Press Enter");
+            Scanner scan1 = new Scanner(System.in);
+            scan1.nextLine();
+
+            for (int i = 0; i < 50; i++) System.out.println();
             mf.printField();
             do {
                 System.out.print("\t\t\t            Play again? (Y/n): ");
