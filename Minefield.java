@@ -289,7 +289,7 @@ public class Minefield {
         } else if (len < 16 && len > 10) {
             System.out.printf("\t\t\t           ");
         } else {
-            System.out.printf("\t\t\t\t          ");
+            System.out.printf("\t\t\t\t        ");
         }
         
         for (int i = 1; i <= mineCounts[0].length; i++) {
@@ -304,7 +304,7 @@ public class Minefield {
                 } else if (len < 16 && len > 10) {
                     System.out.printf("\t\t\t         %d ", i);
                 } else {
-                    System.out.printf("\t\t\t\t        %d ", i);
+                    System.out.printf("\t\t\t\t      %d ", i);
                 }
                 
             } else {
@@ -314,7 +314,7 @@ public class Minefield {
                 } else if (len < 16 && len > 10) {
                     System.out.printf("\t\t\t        %d ", i);
                 } else {
-                    System.out.printf("\t\t\t\t        %d ", i);
+                    System.out.printf("\t\t\t\t      %d ", i);
                 }
 
             }

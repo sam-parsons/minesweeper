@@ -89,7 +89,7 @@ public class LA1Main {
             System.out.println("\t\t\tRULES OF THE GAME");
             System.out.println("\t\t\tThe goal of MineSeeper is eliminate all unrevealed spaces - []");
             System.out.println("\t\t\tand mark all mines without revealing them.");
-            System.out.println("\t\t\tHave a partner enter more mines on a field for added difficulty!");
+            System.out.println("\t\t\tHave a partner enter more mines on a field for added difficulty");
 
             System.out.println();
             System.out.println();
