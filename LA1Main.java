@@ -12,11 +12,7 @@ import java.io.IOException;
  * adds two mines, and prints the field.
  * 
  * Useful future additions: 
- * - You Win/Lose banner at end of game with genText1
  * - research scanner's handling of return key with empty string
- * - make diffculty scale with field size
- * - stagger the top row numbers on printRevealArr and printField
- * - escape character in marking sequence
  */
 
 public class LA1Main {
@@ -37,7 +33,6 @@ public class LA1Main {
             e.printStackTrace();
         }
         
-
         System.out.println();
         System.out.println();
         System.out.println("\t\t\t\t=====================");
@@ -123,9 +118,11 @@ public class LA1Main {
             while (mf.isEmpty()) {
                 mf.generate(fieldDim, fieldDiff);
             }
-            // mf.printField();
 
             for (int i = 0; i < 50; i++) System.out.println();
+
+            mf.printField();
+
             mf.genRevealArr();
             mf.printRevealArr();
             System.out.println();
@@ -178,7 +175,11 @@ public class LA1Main {
             while (revealMine) {
                 for (int i = 0; i < 50; i++) System.out.println();
                 mf.printRevealArr();
-                System.out.println();
+                if (mf.getLength() > 14) {
+
+                } else {
+                    System.out.println();
+                }
                     
                 if (mf.isNotComplete()) {
                     do {
@@ -208,7 +209,12 @@ public class LA1Main {
 
                 for (int i = 0; i < 50; i++) System.out.println();
                 mf.printRevealArr();
-                System.out.println();
+                if (mf.getLength() > 14) {
+
+                } else {
+                    System.out.println();
+                }
+                
                 if (mf.isMine(revealX, revealY)) {
                     for (int i = 0; i < 50; i++) System.out.println();
                     gt.generateEnd(false);
@@ -245,37 +251,41 @@ public class LA1Main {
                     while (markMine && mf.isNotComplete()) {
                         for (int i = 0; i < 50; i++) System.out.println();
                         mf.printRevealArr();
-                        System.out.println();
-                        System.out.println("\t\t    Enter the coordinates of the mine to be marked.");
-                        System.out.println("\t\t    If you wish to unmark a mine, enter those coordinates.");
-                        System.out.println("\t\t    ======================================================");
-                        System.out.println();
+                        System.out.println("\t\t  Enter the coordinates of the mine to be (un)marked.");
                         int markRow = -1;
                         int markCol = -1;
                         String markRowStr = "";
                         String markColStr = "";
 
                         do {
+                            System.out.println("\t\t  Use 'e' to exit back to reveal stage.");
                             System.out.print("\t\t  Enter the row to be (un)marked (integer between 1 and " + (fieldDim) + "): ");
                             markRowStr = scan.next();
+                            if (markRowStr.equals("e")) {
+                                markMine = false;
+                            }
                             try {
                                 markRow = Integer.parseInt(markRowStr) - 1;
                             } catch (NumberFormatException e) {
             
                             }
-                        } while (markRow < 0 || markRow > fieldDim-1);
+                        } while ((markRow < 0 || markRow > fieldDim-1) && !markRowStr.equals("e"));
 
-                        do {
+                        while ((markCol < 0 || markCol > fieldDim-1) && !markColStr.equals("e") && !markRowStr.equals("e")) {
+                            System.out.println("\t\tUse 'e' to exit back to reveal stage.");
                             System.out.print("\t\tEnter the column to be (un)marked (integer between 1 and " + (fieldDim) + "): ");
                             markColStr = scan.next();
+                            if (markColStr.equals("e")) {
+                                markMine = false;
+                            }
                             try {
                                 markCol = Integer.parseInt(markColStr) - 1;
                             } catch (NumberFormatException e) {
             
                             }
-                        } while (markCol < 0 || markCol > fieldDim-1);
+                        };
 
-                        if (mf.isMine(markRow, markCol)) {
+                        if (!markColStr.equals("e") && !markRowStr.equals("e") && mf.isMine(markRow, markCol)) {
                             mf.markMine(markRow, markCol);
                         } else {
                             System.out.println();
@@ -284,7 +294,7 @@ public class LA1Main {
                             System.out.println("\t\t===================================================");
                         }
                         
-                        if (!mf.isNotComplete()) {
+                        if (!markColStr.equals("e") && !markRowStr.equals("e") && !mf.isNotComplete()) {
                             for (int i = 0; i < 50; i++) System.out.println();
                             gt.generateEnd(true);
                             System.out.println("\t\t\t===================================================");
@@ -295,7 +305,7 @@ public class LA1Main {
                         } 
 
                         boolean validMove = true;
-                        if (mf.isNumber(markRow, markCol) && !mf.isHidden(markRow, markCol)) {
+                        if (!markColStr.equals("e") && !markRowStr.equals("e") && mf.isNumber(markRow, markCol) && !mf.isHidden(markRow, markCol)) {
                             validMove = false;
                         }
 
@@ -303,7 +313,7 @@ public class LA1Main {
                         mf.printRevealArr();
                         System.out.println();
 
-                        if (markMine && validMove) {
+                        if (!markColStr.equals("e") && !markRowStr.equals("e") && markMine && validMove) {
 
                             String markAgainYN = "";
                             do {
@@ -320,7 +330,7 @@ public class LA1Main {
                                 markMine = false;
                             }
 
-                        } else if (markMine && !validMove) {
+                        } else if (!markColStr.equals("e") && !markRowStr.equals("e") && markMine && !validMove) {
 
                             String markAgainYN = "";
                             System.out.println("\t\t      You may not mark a revealed open space as a mine.");
@@ -386,6 +396,5 @@ public class LA1Main {
                 }
             } while (!endGame.equals("N") && !endGame.equals("n") && !endGame.equals("Y") && !endGame.equals("y"));
         }
-       
     }
 }

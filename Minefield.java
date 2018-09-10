@@ -293,6 +293,26 @@ public class Minefield {
         }
         
         for (int i = 1; i <= mineCounts[0].length; i++) {
+            if (i > 9 && i != 20) {
+                System.out.print("1 ");
+            } else if (i == 20) {
+                System.out.print("2 ");
+            } else {
+                System.out.print("  ");
+            }
+        }
+
+        System.out.println();
+
+        if (len > 15) {
+            System.out.printf("\t\t              ");
+        } else if (len < 16 && len > 10) {
+            System.out.printf("\t\t\t           ");
+        } else {
+            System.out.printf("\t\t\t\t        ");
+        }
+        
+        for (int i = 1; i <= mineCounts[0].length; i++) {
             System.out.printf("%d ", i % 10);
         }
         for (int i = 1; i <= mineCounts[0].length; i++) {
@@ -314,7 +334,7 @@ public class Minefield {
                 } else if (len < 16 && len > 10) {
                     System.out.printf("\t\t\t        %d ", i);
                 } else {
-                    System.out.printf("\t\t\t\t      %d ", i);
+                    System.out.printf("\t\t\t\t     %d ", i);
                 }
 
             }
@@ -519,9 +539,34 @@ public class Minefield {
             System.out.print("\t\t\t\t         ");
         } 
         
-        for (int i = 1; i <= mineCounts[0].length; i++) {
-            System.out.printf("%d ", i % 10);
+        for (int i = 2; i <= mineCounts[0].length; i += 2) {
+            if (i > 9) {
+                System.out.printf("  %d", i);
+            } else {
+                System.out.printf("  %d ", i);
+            }
+            
         }
+
+        System.out.println();
+
+        if (len > 15) {
+            System.out.print("\t\t             ");
+        } else if (len < 16 && len > 10) {
+            System.out.print("\t\t\t           ");
+        } else {
+            System.out.print("\t\t\t\t         ");
+        } 
+        
+        for (int i = 1; i <= mineCounts[0].length; i += 2) {
+            if (i > 9) {
+                System.out.printf("%d  ", i);
+            } else {
+                System.out.printf("%d   ", i);
+            }
+            
+        }
+
         for (int i = 1; i <= mineCounts[0].length; i++) {
             System.out.println();
             if (i < 10) {
@@ -641,6 +686,10 @@ public class Minefield {
             }
         }
         return empty;
+    }
+
+    public int getLength() {
+        return mineCounts[0].length;
     }
 
 }
