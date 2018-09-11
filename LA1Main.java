@@ -225,9 +225,9 @@ public class LA1Main {
                 } else if (!mf.isNotComplete()) {
                     for (int i = 0; i < 50; i++) System.out.println();
                     gt.generateEnd(true);
-                    System.out.println("\t\t\t===================================================");
-                    System.out.println("\t\t\tAll open spaces revealed and mines marked, you win!");
-                    System.out.println("\t\t\t===================================================");
+                    System.out.println("\t\t\t   ===================================================");
+                    System.out.println("\t\t\t   All open spaces revealed and mines marked, you win!");
+                    System.out.println("\t\t\t   ===================================================");
                     revealMine = false;
                 } else {  
                     System.out.println("\t\t\t     =======================================");
@@ -297,9 +297,9 @@ public class LA1Main {
                         if (!markColStr.equals("e") && !markRowStr.equals("e") && !mf.isNotComplete()) {
                             for (int i = 0; i < 50; i++) System.out.println();
                             gt.generateEnd(true);
-                            System.out.println("\t\t\t===================================================");
-                            System.out.println("\t\t\tAll open spaces revealed and mines marked, you win!");
-                            System.out.println("\t\t\t===================================================");
+                            System.out.println("\t\t\t   ===================================================");
+                            System.out.println("\t\t\t   All open spaces revealed and mines marked, you win!");
+                            System.out.println("\t\t\t   ===================================================");
                             revealMine = false;
                             markMine = false;
                         } 
@@ -355,9 +355,9 @@ public class LA1Main {
                     if (!mf.isNotComplete()) {
                         for (int i = 0; i < 50; i++) System.out.println();
                         gt.generateEnd(true);
-                        System.out.println("\t\t\t===================================================");
-                        System.out.println("\t\t\tAll open spaces revealed and mines marked, you win!");
-                        System.out.println("\t\t\t===================================================");
+                        System.out.println("\t\t\t   ===================================================");
+                        System.out.println("\t\t\t   All open spaces revealed and mines marked, you win!");
+                        System.out.println("\t\t\t   ===================================================");
                         revealMine = false;
                     } 
                 }    
