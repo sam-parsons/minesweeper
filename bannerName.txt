@@ -1,7 +1,7 @@
-FFFFFFF   L          OOOOO    Y     Y   DDDDDD    
-F         L         O     O    Y   Y    D     D   
-F         L         O     O     Y Y     D     D   
-FFFF      L         O     O      Y      D     D   
-F         L         O     O     Y       D     D   
-F         L         O     O    Y        D     D   
-F         LLLLLLL    OOOOO    Y         DDDDDD    
+
+
+
+
+
+
+
