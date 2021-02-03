@@ -3,13 +3,13 @@
 _Command line adaptation of Minesweeper_
 
 <br>
-
+<!---
 <p align="center">
   <a href="https://github.com/sam-parsons/Minesweeper">
     <img src="./Assets/logo.png" alt="logo" width="80" />
   </a>
 </p>
-
+-->
 <a href="https://sam-parsons.github.io/Minesweeper">
   <img src="./Assets/gif.gif" alt="screenshot" width="100%" />
 </a>
