@@ -1,6 +1,6 @@
-# Minesweeper
+# minesweeper
 
-_Command line adaptation of Minesweeper_
+_command line adaptation of minesweeper_
 
 <br>
 <!---
@@ -10,7 +10,7 @@ _Command line adaptation of Minesweeper_
   </a>
 </p>
 -->
-<a href="https://sam-parsons.github.io/Minesweeper">
+<a href="https://sam-parsons.github.io/minesweeper">
   <img src="./Assets/gif.gif" alt="screenshot" width="100%" />
 </a>
 
@@ -20,9 +20,9 @@ _Command line adaptation of Minesweeper_
 ## Installation
 
 ```sh
-git clone https://github.com/sam-parsons/Minesweeper.git
+git clone https://github.com/sam-parsons/minesweeper.git
 
-cd Minesweeper/
+cd minesweeper/
 
 javac LA1Main
 
